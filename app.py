@@ -3,6 +3,7 @@ from langchain_openai import ChatOpenAI
 from langchain_core.output_parsers import StrOutputParser
 from langchain_core.prompts import ChatPromptTemplate
 from config import OPENAI_API_KEY
+import os
 
 st.set_page_config(page_title="Rap Soul", page_icon=":shushing_face:", layout="wide")
 
@@ -26,6 +27,7 @@ title = st.text_input('Type any query to start the battle!', '')
 with st.container():
     st.write("---")
     left_column, right_column = st.columns(2, gap="large")
+    os.environ['OPENAI_API_KEY'] = st.secrets['OPENAI_API_KEY']
     model = ChatOpenAI(openai_api_key=OPENAI_API_KEY)
     output_parser = StrOutputParser()
     chk = 0
